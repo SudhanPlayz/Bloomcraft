@@ -1,15 +1,12 @@
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 
-export class GameOver extends Scene
-{
-    constructor ()
-    {
+export class GameOver extends Scene {
+    constructor() {
         super('GameOver');
     }
 
-    create ()
-    {
+    create() {
         this.cameras.main.setBackgroundColor(0xff0000);
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
@@ -23,8 +20,7 @@ export class GameOver extends Scene
         EventBus.emit('current-scene-ready', this);
     }
 
-    changeScene ()
-    {
+    changeScene() {
         this.scene.start('MainMenu');
     }
 }

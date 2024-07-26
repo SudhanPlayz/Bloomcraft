@@ -3,11 +3,10 @@ import { useRef, useState } from 'react';
 import Phaser from 'phaser';
 import { PhaserGame } from './game/PhaserGame';
 
-function App ()
-{
+function App() {
     // The sprite can only be moved in the MainMenu Scene
     const [canMoveSprite, setCanMoveSprite] = useState(true);
-    
+
     //  References to the PhaserGame component (game and scene are exposed)
     const phaserRef = useRef();
     const [spritePosition, setSpritePosition] = useState({ x: 0, y: 0 });
@@ -16,8 +15,7 @@ function App ()
 
         const scene = phaserRef.current.scene;
 
-        if (scene)
-        {
+        if (scene) {
             scene.changeScene();
         }
     }
@@ -26,8 +24,7 @@ function App ()
 
         const scene = phaserRef.current.scene;
 
-        if (scene && scene.scene.key === 'MainMenu')
-        {
+        if (scene && scene.scene.key === 'MainMenu') {
             // Get the update logo position
             scene.moveLogo(({ x, y }) => {
 
@@ -41,8 +38,7 @@ function App ()
 
         const scene = phaserRef.current.scene;
 
-        if (scene)
-        {
+        if (scene) {
             // Add more stars
             const x = Phaser.Math.Between(64, scene.scale.width - 64);
             const y = Phaser.Math.Between(64, scene.scale.height - 64);
@@ -67,7 +63,7 @@ function App ()
     const currentScene = (scene) => {
 
         setCanMoveSprite(scene.scene.key !== 'MainMenu');
-        
+
     }
 
     return (

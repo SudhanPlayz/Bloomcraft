@@ -6,6 +6,8 @@ export class Preloader extends Scene {
     }
 
     init() {
+        this.add.image(this.cameras.main.width/2, this.cameras.main.height/2, 'background').setDepth(0);
+
         //  A simple progress bar. This is the outline of the bar.
         this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
 
@@ -20,10 +22,8 @@ export class Preloader extends Scene {
     }
 
     preload() {
-        this.load.setPath('assets');
-
-        this.load.image('logo', 'logo.png');
-        this.load.image('star', 'star.png');
+        //  Load our assets. These are just a few images, but you could load audio, spritesheets, 3D models, etc.
+        
     }
 
     create() {

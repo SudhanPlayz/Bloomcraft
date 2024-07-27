@@ -10,25 +10,27 @@ export class Game extends Scene {
     create() {
         this.cameras.main.setBackgroundColor(0x00ff00);
 
-        const map = this.make.tilemap({ key: 'tilemap' })
+        const map = this.make.tilemap({ key: 'tilemap' });
 
-        const hillsTileset = map.addTilesetImage('Hills', 'Hills')
-        const grassTileset = map.addTilesetImage('Grass', 'Grass')
+        const hillsTileset = map.addTilesetImage('Hills', 'Hills');
+        const grassTileset = map.addTilesetImage('Grass', 'Grass');
 
-        map.createLayer("Background", [hillsTileset, grassTileset])
+        const backgroundLayer = map.createLayer("Background", [hillsTileset, grassTileset]);
 
-        this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height / 2)
+        this.physics.world.bounds.width = backgroundLayer.width;
+        this.physics.world.bounds.height = backgroundLayer.height;
+
+        this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height / 2);
         this.add.existing(this.player);
+
+        this.cameras.main.startFollow(this.player);
+
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         EventBus.emit('current-scene-ready', this);
     }
 
-    changeScene() {
-        this.scene.start('GameOver');
-    }
-
     update() {
-        // Update the player
         this.player.update();
     }
 }

@@ -9,13 +9,12 @@ export class Game extends Scene {
     create() {
         this.cameras.main.setBackgroundColor(0x00ff00);
 
-        this.add.image(512, 384, 'background').setAlpha(0.5);
+        const map = this.make.tilemap({ key: 'tilemap' })
 
-        this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5).setDepth(100);
+        const hillsTileset = map.addTilesetImage('Hills', 'Hills')
+        const grassTileset = map.addTilesetImage('Grass', 'Grass')
+
+        map.createLayer("Background", [hillsTileset, grassTileset])
 
         EventBus.emit('current-scene-ready', this);
     }

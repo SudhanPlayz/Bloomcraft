@@ -7,7 +7,7 @@ function App() {
     const phaserRef = useRef();
 
     const currentScene = (scene) => {
-        console.log(scene);
+        console.log("Current Scene: ", scene);
     }
 
     return (

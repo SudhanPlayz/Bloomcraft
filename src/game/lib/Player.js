@@ -10,8 +10,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.setCollideWorldBounds(true);
 
-        this.body.setSize(50, 50);
-        this.body.setOffset(61, 50);
+        this.body.setSize(45, 45);
+        this.body.setOffset(63, 54);
 
         this.speed = 170;
         this.direction = 'down';

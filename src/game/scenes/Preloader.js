@@ -20,6 +20,8 @@ export class Preloader extends Scene {
         // Environment
         this.load.image('Hills', 'environment/Hills.png');
         this.load.image('Grass', 'environment/Grass.png');
+        this.load.image('House', 'environment/House.png');
+        this.load.image('House Decoration', 'environment/House Decoration.png');
 
         // Map
         this.load.tilemapTiledJSON('tilemap', 'map.json')

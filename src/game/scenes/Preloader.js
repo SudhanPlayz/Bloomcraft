@@ -22,6 +22,7 @@ export class Preloader extends Scene {
         this.load.image('Grass', 'environment/Grass.png');
         this.load.image('House', 'environment/House.png');
         this.load.image('House Decoration', 'environment/House Decoration.png');
+        this.load.image('bush', 'objects/bush.png');
 
         // Map
         this.load.tilemapTiledJSON('tilemap', 'map.json')
@@ -43,6 +44,8 @@ export class Preloader extends Scene {
             frameWidth: 172,
             frameHeight: 124
         })
+
+        // Player Idle
         this.load.spritesheet('player_up_idle', 'player/up_idle/up_idle.png', {
             frameWidth: 172,
             frameHeight: 124
@@ -56,6 +59,60 @@ export class Preloader extends Scene {
             frameHeight: 124
         })
         this.load.spritesheet('player_right_idle', 'player/right_idle/right_idle.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+
+        // Player Axe
+        this.load.spritesheet('up_axe', 'player/up_axe/up_axe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('down_axe', 'player/down_axe/down_axe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('left_axe', 'player/left_axe/left_axe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('right_axe', 'player/right_axe/right_axe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+
+        // Player Hoe
+        this.load.spritesheet('up_hoe', 'player/up_hoe/up_hoe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('down_hoe', 'player/down_hoe/down_hoe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('left_hoe', 'player/left_hoe/left_hoe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('right_hoe', 'player/right_hoe/right_hoe.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+
+        // Player Water
+        this.load.spritesheet('up_water', 'player/up_water/up_water.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('down_water', 'player/down_water/down_water.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('left_water', 'player/left_water/left_water.png', {
+            frameWidth: 172,
+            frameHeight: 124
+        })
+        this.load.spritesheet('right_water', 'player/right_water/right_water.png', {
             frameWidth: 172,
             frameHeight: 124
         })

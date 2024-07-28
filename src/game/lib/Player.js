@@ -15,6 +15,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.speed = 170;
         this.direction = 'down';
+        this.tool = 'axe';
+        this.isUsingTool = false;
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
 
@@ -24,6 +26,15 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             left: Phaser.Input.Keyboard.KeyCodes.A,
             right: Phaser.Input.Keyboard.KeyCodes.D
         });
+
+        this.toolKeys = this.scene.input.keyboard.addKeys({
+            axe: Phaser.Input.Keyboard.KeyCodes.ONE,
+            hoe: Phaser.Input.Keyboard.KeyCodes.TWO,
+            water: Phaser.Input.Keyboard.KeyCodes.THREE
+        });
+
+        this.scene.input.on('pointerdown', this.startUsingTool, this);
+        this.scene.input.on('pointerup', this.stopUsingTool, this);
 
         this.createAnimations();
     }
@@ -49,9 +60,24 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 repeat: -1
             });
         });
+
+        // Tool animations
+        const tools = ['axe', 'hoe', 'water'];
+        tools.forEach(tool => {
+            directions.forEach(dir => {
+                this.scene.anims.create({
+                    key: `${dir}_${tool}`,
+                    frames: this.scene.anims.generateFrameNumbers(`${dir}_${tool}`, { start: 0, end: 1 }),
+                    frameRate: 5,
+                    repeat: -1
+                });
+            });
+        });
     }
 
     update() {
+        if (this.isUsingTool) return;
+
         this.setVelocity(0);
 
         let moving = false;
@@ -83,6 +109,43 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         this.body.velocity.normalize().scale(this.speed);
+
+        this.checkToolSelection();
+    }
+
+    checkToolSelection() {
+        if (Phaser.Input.Keyboard.JustDown(this.toolKeys.axe)) {
+            this.selectTool('axe');
+        } else if (Phaser.Input.Keyboard.JustDown(this.toolKeys.hoe)) {
+            this.selectTool('hoe');
+        } else if (Phaser.Input.Keyboard.JustDown(this.toolKeys.water)) {
+            this.selectTool('water');
+        }
+    }
+
+    selectTool(tool) {
+        this.tool = tool;
+        console.log(`Selected tool: ${this.tool}`);
+    }
+
+    startUsingTool() {
+        if (!this.isUsingTool) {
+            this.isUsingTool = true;
+            this.setVelocity(0);
+
+            this.play(`${this.direction}_${this.tool}`, true);
+
+            console.log(`Started using ${this.tool} in ${this.direction} direction`);
+        }
+    }
+
+    stopUsingTool() {
+        if (this.isUsingTool) {
+            this.isUsingTool = false;
+            this.play(`idle_${this.direction}`, true);
+
+            console.log(`Stopped using ${this.tool}`);
+        }
     }
 }
 

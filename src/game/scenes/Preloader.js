@@ -22,10 +22,15 @@ export class Preloader extends Scene {
         this.load.image('Grass', 'environment/Grass.png');
         this.load.image('House', 'environment/House.png');
         this.load.image('House Decoration', 'environment/House Decoration.png');
-        this.load.image('bush', 'objects/bush.png');
 
         // Map
         this.load.tilemapTiledJSON('tilemap', 'map.json')
+
+        // Overlay
+        let overlayKeys = [ "axe", "corn", "hoe", "tomato", "water" ]
+        for(let key of overlayKeys) {
+            this.load.image(key, `overlay/${key}.png`)
+        }
 
         // Player
         this.load.spritesheet('player_up', 'player/up/up.png', {

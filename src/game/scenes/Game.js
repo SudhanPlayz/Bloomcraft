@@ -14,11 +14,10 @@ export class Game extends Scene {
         const hillsTileset = map.addTilesetImage('Hills', 'Hills');
         const grassTileset = map.addTilesetImage('Grass', 'Grass');
         const houseTileset = map.addTilesetImage('House', 'House');
-        const bushTileset = map.addTilesetImage('bush', 'bush');
         const houseDecorationTileset = map.addTilesetImage('House Decoration', 'House Decoration');
 
         const backgroundLayer = map.createLayer("Background", [hillsTileset, grassTileset]);
-        map.createLayer("Decoration", [hillsTileset, grassTileset, bushTileset]);
+        map.createLayer("Decoration", [hillsTileset, grassTileset]);
 
         // House layers
         const houseBackgroundLayer = map.createLayer("House/Background", houseTileset);
